@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCA Semester-II Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background-color: #0056b3;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .welcome {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .welcome p {
+            font-size: 1.2em;
+            color: #555;
+        }
+        .subject-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card h2 {
+            background-color: #0056b3;
+            color: white;
+            padding: 15px;
+            margin: 0;
+            border-radius: 8px 8px 0 0;
+        }
+        .card p {
+            padding: 15px;
+            margin: 0;
+            color: #555;
+        }
+        .card a {
+            display: block;
+            text-align: center;
+            margin: 15px;
+            padding: 10px 15px;
+            background-color: #0056b3;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.2s ease;
+        }
+        .card a:hover {
+            background-color: #003d80;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 30px;
+        }
+        footer a {
+            color: #1e90ff;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>MCA Semester-II Resource Dashboard</h1>
+        <p>Organized resources for seamless learning</p>
+    </header>
+    
+    <div class="container">
+        <div class="welcome">
+            <p>Welcome to the centralized hub for MCA Semester-II subjects. Click on any subject below to access its dedicated resources. This is designed as a supplementary guide to aid your studies.</p>
+        </div>
+
+        <div class="subject-grid">
+            <!-- Subject Cards -->
+            <div class="card">
+                <h2>Advanced Java</h2>
+                <p>Explore resources to develop server-side applications, web development, and more using Java technologies.</p>
+                <a href="https://your-github-page-link-advanced-java.com" target="_blank">Go to Resources</a>
+            </div>
+            <div class="card">
+                <h2>Python Programming</h2>
+                <p>Learn Python basics, advanced concepts, object-oriented programming, and database integration.</p>
+                <a href="https://your-github-page-link-python.com" target="_blank">Go to Resources</a>
+            </div>
+            <div class="card">
+                <h2>Web Technologies</h2>
+                <p>Discover resources on HTML5, CSS3, JavaScript, jQuery, AngularJS, and PHP for building dynamic websites.</p>
+                <a href="https://your-github-page-link-web-technologies.com" target="_blank">Go to Resources</a>
+            </div>
+            <div class="card">
+                <h2>Optimization Techniques</h2>
+                <p>Access resources for linear programming, network analysis, queuing theory, and more.</p>
+                <a href="https://your-github-page-link-optimization.com" target="_blank">Go to Resources</a>
+            </div>
+            <div class="card">
+                <h2>DevOps</h2>
+                <p>Find guides on continuous integration, containerization, CI/CD pipelines, and configuration management.</p>
+                <a href="https://your-github-page-link-devops.com" target="_blank">Go to Resources</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Your Name | MCA Semester-II Dashboard</p>
+        <p><a href="https://your-feedback-form.com" target="_blank">Suggest Resources</a></p>
+    </footer>
+</body>
+</html>
