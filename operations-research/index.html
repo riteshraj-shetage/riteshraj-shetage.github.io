@@ -2,42 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simplex Method Calculator</title>
+    <title>Enhanced Simplex Method Solver</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fraction.js/4.0.12/fraction.min.js"></script>
 </head>
 <body>
-
-    <!-- Navigation Bar -->
-    <nav>
-        <a href="#">Home</a>
-        <a href="#">Simplex Method</a>
-        <a href="#">About</a>
-    </nav>
-
-    <!-- Main Container -->
-    <div class="container">
-        <h1>Simplex Method Calculator</h1>
-
-        <label>Number of Variables:</label>
-        <input type="number" id="numVars" min="2" max="4" value="3">
-
-        <label>Number of Constraints:</label>
-        <input type="number" id="numConstraints" min="1" max="4" value="3">
-
+    <h1>Enhanced Simplex Method Solver</h1>
+    <div class="input-section">
+        <label for="numVars">Number of Variables:</label>
+        <input type="number" id="numVars" min="1" value="2">
+        <label for="numConstraints">Number of Constraints:</label>
+        <input type="number" id="numConstraints" min="1" value="2">
+        <label for="problemType">Problem Type:</label>
+        <select id="problemType">
+            <option value="max">Maximization</option>
+            <option value="min">Minimization</option>
+        </select>
         <button onclick="generateTable()">Generate Table</button>
+    </div>
 
+    <form id="simplexForm" class="hidden">
+        <h2>Input Coefficients</h2>
         <div id="inputTable"></div>
+        <button type="button" onclick="solveSimplex()">Solve</button>
+    </form>
 
-        <button id="solveBtn" style="display:none;" onclick="solveSimplex()">Solve</button>
-
-        <div id="solution" class="solution" style="display:none;">
-            <h2>Solution Steps</h2>
-            <div id="steps"></div>
-        </div>
+    <div id="solution" class="hidden">
+        <h2>Solution Steps</h2>
+        <div id="steps"></div>
     </div>
 
     <script src="main.js"></script>
-
 </body>
 </html>
