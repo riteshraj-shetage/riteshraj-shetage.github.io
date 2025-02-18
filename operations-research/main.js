@@ -1,172 +1,189 @@
-document.addEventListener("DOMContentLoaded", function () {
-    generateTable(); // Auto-generate table on page load
-});
-
 function generateTable() {
-    let numVars = document.getElementById("numVars").value;
-    let numConstraints = document.getElementById("numConstraints").value;
+    const numVars = parseInt(document.getElementById('numVars').value);
+    const numConstraints = parseInt(document.getElementById('numConstraints').value);
+    const problemType = document.getElementById('problemType').value;
 
-    let tableHTML = `<table><tr><th>Variables</th>`;
-    
-    // Table Headers
-    for (let i = 1; i <= numVars; i++) {
-        tableHTML += `<th>x${i}</th>`;
-    }
-    tableHTML += `<th>≤</th><th>RHS</th></tr>`;
+    let tableHTML = '<table>';
+    tableHTML += '<tr><th rowspan="2">CB</th><th rowspan="2">B</th><th rowspan="2">XB</th>';
+    for (let i = 1; i <= numVars; i++) tableHTML += `<th>X${i}</th>`;
+    for (let i = 1; i <= numConstraints; i++) tableHTML += `<th>S${i}</th>`;
+    tableHTML += '<th rowspan="2">RHS</th><th rowspan="2">Min Ratio</th></tr>';
+    tableHTML += '<tr>';
+    for (let i = 1; i <= numVars; i++) tableHTML += `<th id="ci_x${i}">0</th>`;
+    for (let i = 1; i <= numConstraints; i++) tableHTML += `<th id="ci_s${i}">0</th>`;
+    tableHTML += '</tr>';
 
-    // Constraint Rows
     for (let i = 1; i <= numConstraints; i++) {
-        tableHTML += `<tr><td>Constraint ${i}</td>`;
-        for (let j = 0; j <= numVars; j++) {
-            tableHTML += `<td><input type="number" id="c${i}_v${j}" value="0"></td>`;
+        tableHTML += `<tr><td id="cb_s${i}">0</td><td>S${i}</td><td><input type="number" id="xb${i}" value="0" readonly></td>`;
+        for (let j = 1; j <= numVars; j++) {
+            tableHTML += `<td><input type="number" id="c${i}v${j}" required></td>`;
         }
-        tableHTML += `</tr>`;
+        for (let j = 1; j <= numConstraints; j++) {
+            tableHTML += `<td>${i === j ? 1 : 0}</td>`;
+        }
+        tableHTML += `<td><input type="number" id="c${i}rhs" required></td><td id="min_ratio${i}">-</td></tr>`;
     }
 
-    // Objective Function
-    tableHTML += `<tr><td>Objective Function</td>`;
+    tableHTML += '<tr><td>-</td><td>Z</td><td>-</td>';
     for (let j = 1; j <= numVars; j++) {
-        tableHTML += `<td><input type="number" id="obj_v${j}" value="0"></td>`;
+        tableHTML += `<td id="z_x${j}">0</td>`;
     }
-    tableHTML += `<td>Max</td></tr></table>`;
+    for (let j = 1; j <= numConstraints; j++) {
+        tableHTML += `<td id="z_s${j}">0</td>`;
+    }
+    tableHTML += '<td>-</td><td>-</td></tr>';
 
-    document.getElementById("inputTable").innerHTML = tableHTML;
-    document.getElementById("solveBtn").style.display = "block";
+    tableHTML += '<tr><td>-</td><td>Zj</td><td>-</td>';
+    for (let j = 1; j <= numVars; j++) {
+        tableHTML += `<td id="zj_x${j}">0</td>`;
+    }
+    for (let j = 1; j <= numConstraints; j++) {
+        tableHTML += `<td id="zj_s${j}">0</td>`;
+    }
+    tableHTML += '<td>-</td><td>-</td></tr>';
+
+    tableHTML += '<tr><td>-</td><td>Ci - Zj</td><td>-</td>';
+    for (let j = 1; j <= numVars; j++) {
+        tableHTML += `<td id="ci_zj_x${j}">0</td>`;
+    }
+    for (let j = 1; j <= numConstraints; j++) {
+        tableHTML += `<td id="ci_zj_s${j}">0</td>`;
+    }
+    tableHTML += '<td>-</td><td>-</td></tr>';
+
+    tableHTML += '</table>';
+
+    document.getElementById('inputTable').innerHTML = tableHTML;
+    document.getElementById('simplexForm').classList.remove('hidden');
 }
 
 function solveSimplex() {
-    let numVars = parseInt(document.getElementById("numVars").value);
-    let numConstraints = parseInt(document.getElementById("numConstraints").value);
+    const numVars = parseInt(document.getElementById('numVars').value);
+    const numConstraints = parseInt(document.getElementById('numConstraints').value);
+    const problemType = document.getElementById('problemType').value;
 
     let tableau = [];
-
-    // Construct initial tableau
-    for (let i = 0; i < numConstraints; i++) {
+    for (let i = 1; i <= numConstraints; i++) {
         let row = [];
-        for (let j = 0; j <= numVars; j++) {
-            row.push(parseFloat(document.getElementById(`c${i + 1}_v${j}`).value));
+        for (let j = 1; j <= numVars; j++) {
+            row.push(new Fraction(document.getElementById(`c${i}v${j}`).value || 0));
         }
-        for (let j = 0; j < numConstraints; j++) {
-            row.push(i === j ? 1 : 0); // Slack variables
+        for (let j = 1; j <= numConstraints; j++) {
+            row.push(new Fraction(i === j ? 1 : 0)); // Slack variables
         }
+        row.push(new Fraction(document.getElementById(`c${i}rhs`).value || 0));
         tableau.push(row);
     }
 
-    // Objective function row
-    let objRow = [];
-    for (let j = 0; j < numVars; j++) {
-        objRow.push(-parseFloat(document.getElementById(`obj_v${j + 1}`).value));
+    let objFunc = [];
+    for (let j = 1; j <= numVars; j++) {
+        objFunc.push(new Fraction(document.getElementById(`ci_x${j}`).textContent || 0));
     }
-    for (let j = 0; j < numConstraints + 1; j++) {
-        objRow.push(0);
+    for (let j = 1; j <= numConstraints; j++) {
+        objFunc.push(new Fraction(0)); // Coefficients for slack variables
     }
-    tableau.push(objRow);
+    objFunc.push(new Fraction(0)); // RHS
 
-    let stepsHTML = `<h3>Initial Tableau</h3>`;
-    stepsHTML += generateTableauHTML(tableau);
+    tableau.push(objFunc); // Adding the objective function row
 
-    // Perform Simplex iterations
+    let stepsHTML = `<h3>Initial Tableau</h3>${generateTableHTML(tableau)}`;
     let iteration = 1;
-    while (!isOptimal(tableau)) {
-        let pivotCol = getPivotColumn(tableau);
-        let pivotRow = getPivotRow(tableau, pivotCol);
 
-        if (pivotRow === -1) {
-            stepsHTML += `<p>No feasible solution (Unbounded problem)</p>`;
-            break;
-        }
+    while (!isOptimal(tableau, problemType)) {
+        let pivotCol = selectPivotColumn(tableau, problemType);
+        let pivotRow = selectPivotRow(tableau, pivotCol);
+        if (pivotRow === -1) break; // No valid pivot row found, unbounded solution
 
         stepsHTML += `<h3>Iteration ${iteration}</h3>`;
         stepsHTML += `<p>Pivot Element: Row ${pivotRow + 1}, Column ${pivotCol + 1}</p>`;
 
         tableau = performPivotOperation(tableau, pivotRow, pivotCol);
-        stepsHTML += generateTableauHTML(tableau);
+        stepsHTML += generateTableHTML(tableau);
         iteration++;
     }
 
-    // Display final result
-    let solution = getSolution(tableau, numVars);
-    stepsHTML += `<h3>Final Solution</h3><p>${solution}</p>`;
-
-    document.getElementById("solution").style.display = "block";
-    document.getElementById("steps").innerHTML = stepsHTML;
+    stepsHTML += `<h3>Final Solution</h3>${getSolution(tableau, numVars)}`;
+    document.getElementById('steps').innerHTML = stepsHTML;
+    document.getElementById('solution').classList.remove('hidden');
 }
 
-// Helper function to generate HTML for the tableau
-function generateTableauHTML(tableau) {
-    let tableHTML = `<table>`;
-    for (let i = 0; i < tableau.length; i++) {
-        tableHTML += `<tr>`;
-        for (let j = 0; j < tableau[i].length; j++) {
-            tableHTML += `<td>${tableau[i][j].toFixed(2)}</td>`;
-        }
-        tableHTML += `</tr>`;
+function generateTableHTML(tableau) {
+    let html = "<table>";
+    tableau.forEach(row => {
+        html += "<tr>";
+        row.forEach(cell => {
+            html += `<td>${cell.toFraction()}</td>`;
+        });
+        html += "</tr>";
+    });
+    html += "</table>";
+    return html;
+}
+
+function isOptimal(tableau, problemType) {
+    let lastRow = tableau[tableau.length - 1];
+    if (problemType === "max") {
+        return lastRow.slice(0, -1).every(cell => cell.valueOf() >= 0);
+    } else {
+        return lastRow.slice(0, -1).every(cell => cell.valueOf() <= 0);
     }
-    tableHTML += `</table>`;
-    return tableHTML;
 }
 
-// Check if the current tableau is optimal
-function isOptimal(tableau) {
+function selectPivotColumn(tableau, problemType) {
     let lastRow = tableau[tableau.length - 1];
-    return lastRow.every(value => value >= 0);
+    let values = lastRow.slice(0, -1).map(cell => cell.valueOf());
+    return problemType === "max" ? values.indexOf(Math.min(...values)) : values.indexOf(Math.max(...values));
 }
 
-// Get the pivot column (most negative value in last row)
-function getPivotColumn(tableau) {
-    let lastRow = tableau[tableau.length - 1];
-    let minValue = Math.min(...lastRow.slice(0, lastRow.length - 1));
-    return lastRow.indexOf(minValue);
-}
-
-// Get the pivot row (minimum positive ratio of RHS to pivot column)
-function getPivotRow(tableau, pivotCol) {
-    let ratios = [];
+function selectPivotRow(tableau, pivotCol) {
+    let minRatio = Infinity, minIndex = -1;
     for (let i = 0; i < tableau.length - 1; i++) {
         let rhs = tableau[i][tableau[i].length - 1];
-        let pivotValue = tableau[i][pivotCol];
-        if (pivotValue > 0) {
-            ratios.push(rhs / pivotValue);
-        } else {
-            ratios.push(Infinity);
+        let colVal = tableau[i][pivotCol];
+        if (colVal.valueOf() > 0) {
+            let ratio = rhs.div(colVal);
+            if (ratio.valueOf() < minRatio) {
+                minRatio = ratio.valueOf();
+                minIndex = i;
+            }
         }
     }
-    let minRatio = Math.min(...ratios);
-    return ratios.indexOf(minRatio);
+    return minIndex;
 }
 
-// Perform pivot operation (row reduction)
 function performPivotOperation(tableau, pivotRow, pivotCol) {
-    let pivotValue = tableau[pivotRow][pivotCol];
+    let pivotElement = tableau[pivotRow][pivotCol];
 
-    // Normalize pivot row
-    for (let j = 0; j < tableau[pivotRow].length; j++) {
-        tableau[pivotRow][j] /= pivotValue;
-    }
+    // Divide the pivot row by the pivot element
+    tableau[pivotRow] = tableau[pivotRow].map(cell => cell.div(pivotElement));
 
-    // Reduce other rows
+    // Make other rows zero in the pivot column
     for (let i = 0; i < tableau.length; i++) {
         if (i !== pivotRow) {
             let factor = tableau[i][pivotCol];
-            for (let j = 0; j < tableau[i].length; j++) {
-                tableau[i][j] -= factor * tableau[pivotRow][j];
-            }
+            tableau[i] = tableau[i].map((cell, index) => cell.sub(factor.mul(tableau[pivotRow][index])));
         }
     }
 
     return tableau;
 }
 
-// Get final solution from tableau
 function getSolution(tableau, numVars) {
-    let solution = new Array(numVars).fill(0);
+    let solution = "Optimal Solution: ";
+    let lastColIndex = tableau[0].length - 1;
+    let vars = Array(numVars).fill(new Fraction(0));
 
     for (let i = 0; i < tableau.length - 1; i++) {
-        let basicVarIndex = tableau[i].slice(0, numVars).findIndex(x => x === 1);
-        if (basicVarIndex !== -1) {
-            solution[basicVarIndex] = tableau[i][tableau[i].length - 1];
+        let basicVarIndex = tableau[i].slice(0, numVars).findIndex(cell => cell.equals(1));
+        if (basicVarIndex !== -1 && tableau[i].filter(cell => !cell.equals(0) && !cell.equals(1)).length === 1) {
+            vars[basicVarIndex] = tableau[i][lastColIndex];
         }
     }
 
-    return `Optimal Solution: ${solution.map((val, i) => `x${i + 1} = ${val.toFixed(2)}`).join(", ")}`;
+    vars.forEach((val, i) => {
+        solution += `x${i + 1} = ${val.toFraction()}, `;
+    });
+
+    solution += `Z = ${tableau[tableau.length - 1][lastColIndex].toFraction()}`;
+    return solution;
 }
