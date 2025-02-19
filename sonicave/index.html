@@ -7,57 +7,41 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Navbar -->
-    <header>
-        <div class="logo">Sonicave</div>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#blog">Blog</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-        <button id="dark-mode-toggle">🌙</button>
-    </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <h1>Welcome to Sonicave</h1>
-        <p>Developer. Innovator. Explorer.</p>
-        <a href="#projects" class="btn">View Projects</a>
-    </section>
+    <!-- Background Blur Effect -->
+    <div id="overlay"></div>
 
-    <!-- Projects Section -->
-    <section id="projects">
-        <h2>Projects</h2>
-        <div class="project-grid">
-            <div class="project-card">Project 1</div>
-            <div class="project-card">Project 2</div>
-            <div class="project-card">Project 3</div>
+    <!-- Floating Window UI -->
+    <div class="window" id="floatingWindow">
+        <div class="window-header">
+            <div class="mac-buttons">
+                <span class="close"></span>
+                <span class="minimize"></span>
+                <span class="maximize"></span>
+            </div>
+            <span class="window-title">Welcome to Sonicave</span>
+            <div class="windows-buttons">
+                <span class="minimize"></span>
+                <span class="maximize"></span>
+                <span class="close"></span>
+            </div>
         </div>
-    </section>
 
-    <!-- Blog Section -->
-    <section id="blog">
-        <h2>Blog</h2>
-        <div class="blog-list">
-            <article class="blog-post">Blog Post 1</article>
-            <article class="blog-post">Blog Post 2</article>
+        <div class="window-content">
+            <div class="profile">
+                <img src="profile.png" alt="Profile Picture" class="profile-pic">
+                <h2>Your Name</h2>
+                <p>Tech Enthusiast | Developer | Innovator</p>
+                <div class="buttons">
+                    <button class="btn">Projects</button>
+                    <button class="btn">About Me</button>
+                    <button class="btn">Contact</button>
+                </div>
+            </div>
         </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-        <h2>Contact</h2>
-        <p>Let's connect! Reach out on GitHub or LinkedIn.</p>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2024 sonicave.io by rites | All rights reserved.</p>
-    </footer>
+    </div>
 
     <script src="main.js"></script>
+
 </body>
 </html>
