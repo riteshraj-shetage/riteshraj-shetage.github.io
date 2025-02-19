@@ -1,31 +1,30 @@
-// Dark Mode Toggle
-const darkModeToggle = document.getElementById("dark-mode-toggle");
-let isDarkMode = true;
+document.addEventListener("DOMContentLoaded", function () {
+    const windowElement = document.getElementById("floatingWindow");
+    const overlay = document.getElementById("overlay");
 
-darkModeToggle.addEventListener("click", () => {
-    document.body.classList.toggle("light-mode");
-    isDarkMode = !isDarkMode;
-    darkModeToggle.innerText = isDarkMode ? "🌙" : "☀️";
-});
+    // Show window & overlay on load
+    windowElement.style.display = "block";
+    overlay.style.display = "block";
 
-// Smooth Scroll for Navigation
-document.querySelectorAll('nav ul li a').forEach(anchor => {
-    anchor.addEventListener("click", function(event) {
-        event.preventDefault();
-        const targetId = this.getAttribute("href").substring(1);
-        document.getElementById(targetId).scrollIntoView({
-            behavior: "smooth"
+    // Close Button
+    document.querySelectorAll(".close").forEach(btn => {
+        btn.addEventListener("click", () => {
+            windowElement.style.display = "none";
+            overlay.style.display = "none";
         });
     });
-});
 
-// Project & Blog Card Hover Effects
-document.querySelectorAll(".project-card, .blog-post").forEach(card => {
-    card.addEventListener("mouseover", () => {
-        card.style.transform = "scale(1.05)";
-        card.style.transition = "transform 0.3s ease";
+    // Minimize Button
+    document.querySelectorAll(".minimize").forEach(btn => {
+        btn.addEventListener("click", () => {
+            document.querySelector(".window-content").style.display = "none";
+        });
     });
-    card.addEventListener("mouseleave", () => {
-        card.style.transform = "scale(1)";
+
+    // Maximize Button
+    document.querySelectorAll(".maximize").forEach(btn => {
+        btn.addEventListener("click", () => {
+            document.querySelector(".window-content").style.display = "block";
+        });
     });
 });
