@@ -1,135 +1,111 @@
-/* Global Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-    scroll-behavior: smooth;
-}
-
+/* Body Styling */
 body {
-    background-color: #0D1117;
-    color: #C9D1D9;
+    background: url('background.jpg') center/cover no-repeat;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    position: relative;
 }
 
-/* Navbar */
-header {
+/* Blurred Background Effect */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(10px); /* Blur effect */
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent dark overlay */
+    z-index: 5;
+    display: none; /* Initially hidden */
+}
+
+/* Floating Window */
+.window {
+    width: 400px;
+    background: rgba(30, 30, 30, 0.85);
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    z-index: 10;
+    position: absolute;
+    display: none; /* Initially hidden */
+}
+
+/* Window Header */
+.window-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 5%;
-    background: #161B22;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 100;
+    background: #292929;
+    padding: 8px 12px;
 }
 
-.logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
-nav ul {
-    list-style: none;
+/* Mac & Windows Buttons */
+.mac-buttons {
     display: flex;
 }
-
-nav ul li {
-    margin: 0 15px;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: #C9D1D9;
-    font-weight: 500;
-    transition: 0.3s;
-}
-
-nav ul li a:hover {
-    color: #58A6FF;
-}
-
-/* Hero Section */
-.hero {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 0 10%;
-}
-
-.hero h1 {
-    font-size: 3rem;
-}
-
-.hero p {
-    font-size: 1.2rem;
-    margin: 10px 0;
-}
-
-.btn {
-    margin-top: 15px;
-    padding: 10px 20px;
-    background: #58A6FF;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
+.mac-buttons span,
+.windows-buttons span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 5px;
+    display: inline-block;
     cursor: pointer;
+}
+.mac-buttons .close { background: #ff5f56; }
+.mac-buttons .minimize { background: #ffbd2e; }
+.mac-buttons .maximize { background: #27c93f; }
+
+.windows-buttons {
+    display: flex;
+}
+.windows-buttons .minimize, 
+.windows-buttons .maximize, 
+.windows-buttons .close {
+    background: white;
+    border-radius: 2px;
+    width: 14px;
+    height: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    color: black;
+    margin-left: 5px;
+}
+
+/* Window Content */
+.window-content {
+    padding: 20px;
+    text-align: center;
+}
+.profile-pic {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+/* Buttons */
+.buttons {
+    margin-top: 10px;
+}
+.btn {
+    background: #444;
+    border: none;
+    padding: 8px 16px;
+    margin: 5px;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
     transition: 0.3s;
 }
-
 .btn:hover {
-    background: #1F6FEB;
-}
-
-/* Projects */
-#projects {
-    padding: 50px 10%;
-}
-
-.project-grid {
-    display: flex;
-    gap: 20px;
-}
-
-.project-card {
-    background: #161B22;
-    padding: 20px;
-    border-radius: 8px;
-    flex: 1;
-    text-align: center;
-    transition: transform 0.3s;
-}
-
-.project-card:hover {
-    transform: translateY(-5px);
-}
-
-/* Blog */
-#blog {
-    padding: 50px 10%;
-}
-
-.blog-post {
-    background: #161B22;
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 15px;
-}
-
-/* Contact */
-#contact {
-    padding: 50px 10%;
-    text-align: center;
-}
-
-/* Footer */
-footer {
-    text-align: center;
-    padding: 15px;
-    background: #161B22;
+    background: #666;
 }
