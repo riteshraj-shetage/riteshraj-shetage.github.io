@@ -121,12 +121,21 @@
       gap:2rem; justify-items:center; align-items:center;
     }
     .skill-chart {
-      width:140px; height:140px; position:relative;
-      background: var(--clr-tahoe); backdrop-filter: blur(8px);
-      border-radius:50%;
-      padding:1rem;
-    }
-    .skill-chart canvas { position:absolute; top:0; left:0; }
+  width: 140px;
+  height: 140px;
+  position: relative;
+  background: var(--clr-tahoe);
+  backdrop-filter: blur(8px);
+  border-radius: 50%;
+  padding: 1rem;
+}
+.skill-chart canvas {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+}
     .skill-chart span {
       position:absolute; width:100%; text-align:center; line-height:140px;
       font-weight:700; font-size:1.1rem; color:var(--clr-text);
@@ -438,22 +447,34 @@
       { id: 'chart-db', pct: 70 }
     ];
     skills.forEach(s => {
-      new Chart(document.getElementById(s.id), {
-        type: 'doughnut',
-        data: {
-          labels: ['',''],
-          datasets: [{
-            data: [s.pct, 100 - s.pct],
-            backgroundColor: [getComputedStyle(document.documentElement).getPropertyValue('--clr-accent'), '#333'],
-            borderWidth: 0
-          }]
-        },
-        options: {
-          cutout: '75%',
-          plugins: { tooltip: { enabled: false }, legend: { display: false } }
+  new Chart(
+    document.getElementById(s.id).getContext('2d'),
+    {
+      type: 'doughnut',
+      data: {
+        labels: ['',''],
+        datasets: [{
+          data: [s.pct, 100 - s.pct],
+          backgroundColor: [
+            getComputedStyle(document.documentElement).getPropertyValue('--clr-accent'),
+            '#333'
+          ],
+          borderWidth: 0
+        }]
+      },
+      options: {
+        cutout: '75%',
+        responsive: true,
+        maintainAspectRatio: false,
+        layout: { padding: 0 },
+        plugins: {
+          tooltip: { enabled: false },
+          legend: { display: false }
         }
-      });
-    });
+      }
+    }
+  );
+});
 
     // VANILLA-TILT ON PROJECT CARDS
     document.querySelectorAll('.project-card').forEach(el => {
