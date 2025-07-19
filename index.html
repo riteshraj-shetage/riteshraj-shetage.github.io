@@ -21,10 +21,11 @@
     * { margin:0; padding:0; box-sizing:border-box; }
     :root {
       --clr-bg: #0d0f14;
-      --clr-card: #1e2128;
+      --clr-card: rgba(30,33,40,0.6);
       --clr-text: #e0e0e0;
       --clr-accent: #ff4c60;
       --clr-accent-dark: #d13e4f;
+      --clr-tahoe: rgba(255,255,255,0.1);
       --transition: 0.4s ease;
       --font-sans: 'Roboto', sans-serif;
     }
@@ -34,7 +35,6 @@
       color: var(--clr-text);
       font-family: var(--font-sans);
       line-height: 1.6;
-      position: relative;
       overflow-x: hidden;
     }
     a { color: var(--clr-accent); text-decoration: none; }
@@ -45,11 +45,12 @@
       position: fixed; top:0; left:0; width:100%; height:100%; z-index:-1;
     }
 
-    /* NAVBAR */
+    /* NAVBAR (Tahoe effect) */
     nav {
       position: fixed; top:0; width:100%; padding:1rem 2rem;
       display:flex; justify-content:space-between; align-items:center;
-      background: rgba(13,15,20,0.75); backdrop-filter: blur(8px);
+      background: var(--clr-tahoe);
+      backdrop-filter: blur(12px);
       z-index:100;
     }
     nav .logo { font-size:1.4rem; font-weight:700; }
@@ -61,7 +62,7 @@
     nav ul li a.active { color: var(--clr-accent); }
 
     /* SECTION TITLES */
-    section { padding:6rem 2rem 2rem; max-width:1000px; margin:auto; }
+    section { padding:6rem 2rem 2rem; max-width:1200px; margin:auto; }
     h2 {
       font-size:2rem; margin-bottom:1rem; position:relative;
       color: var(--clr-accent);
@@ -98,7 +99,8 @@
     }
     #home .contact a {
       display:flex; align-items:center; gap:0.5rem;
-      background: var(--clr-card); padding:0.6rem 1rem; border-radius:4px;
+      background: var(--clr-tahoe); padding:0.6rem 1rem; border-radius:4px;
+      backdrop-filter: blur(8px);
       transition: var(--transition);
     }
     #home .contact a:hover { background: var(--clr-accent-dark); }
@@ -108,7 +110,10 @@
     }
 
     /* ABOUT */
-    #about p { max-width:800px; margin:auto; }
+    #about p {
+      max-width:800px; margin:auto 0;
+      opacity:0; transform: translateY(20px);
+    }
 
     /* SKILLS – CHART GRID */
     .skills-grid {
@@ -117,25 +122,34 @@
     }
     .skill-chart {
       width:140px; height:140px; position:relative;
+      background: var(--clr-tahoe); backdrop-filter: blur(8px);
+      border-radius:50%;
+      padding:1rem;
     }
     .skill-chart canvas { position:absolute; top:0; left:0; }
     .skill-chart span {
       position:absolute; width:100%; text-align:center; line-height:140px;
       font-weight:700; font-size:1.1rem; color:var(--clr-text);
     }
+    .skill-desc {
+      font-size:0.9rem; max-width:200px; text-align:center; margin-top:0.5rem;
+      color:#bbb;
+    }
 
     /* PROJECTS – TILT CARDS */
     .projects-grid {
-      display:grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+      display:grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
       gap:2rem;
     }
     .project-card {
-      background: var(--clr-card); border-radius:8px; overflow:hidden;
-      cursor:pointer; box-shadow:0 4px 15px rgba(0,0,0,0.3);
+      background: var(--clr-tahoe); backdrop-filter: blur(8px);
+      border-radius:8px; overflow:hidden; cursor:pointer;
+      box-shadow:0 4px 15px rgba(0,0,0,0.3);
       transition: var(--transition);
     }
+    .project-card:hover { transform: translateY(-5px); }
     .project-card img {
-      width:100%; height:160px; object-fit:cover;
+      width:100%; height:180px; object-fit:cover;
     }
     .project-card .info {
       padding:1rem;
@@ -147,7 +161,7 @@
       font-size:0.95rem; color:var(--clr-text);
     }
 
-    /* MODALS */
+    /* MODALS (Tahoe) */
     .modal {
       position:fixed; top:0; left:0; width:100%; height:100%;
       background: rgba(0,0,0,0.85); display:flex;
@@ -159,8 +173,8 @@
       opacity:1; pointer-events:auto;
     }
     .modal-content {
-      background: var(--clr-card); padding:2rem;
-      border-radius:8px; max-width:600px; width:90%;
+      background: var(--clr-tahoe); backdrop-filter: blur(12px);
+      padding:2rem; border-radius:8px; max-width:640px; width:90%;
       position:relative; box-shadow: 0 8px 20px rgba(0,0,0,0.5);
     }
     .modal-close {
@@ -171,22 +185,37 @@
     .modal-content h3 {
       margin-top:0; color:var(--clr-accent);
     }
-    .modal-content p { margin:1rem 0; }
+    .modal-content p, .modal-content ul {
+      margin:1rem 0; color:#ccc; font-size:0.95rem;
+    }
+    .modal-content ul li {
+      margin-bottom:0.5rem; padding-left:1rem;
+      position:relative;
+    }
+    .modal-content ul li::before {
+      content:'•'; position:absolute; left:0; color:var(--clr-accent);
+    }
 
-    /* CERTS & EDU LISTS */
+    /* CERTS & EDU LISTS (Tahoe) */
     ul { list-style:none; padding-left:0; }
     ul li {
-      background: var(--clr-card); margin-bottom:0.8rem;
-      padding:0.8rem 1rem; border-radius:4px;
-      display:flex; justify-content:space-between;
-      align-items:center;
+      background: var(--clr-tahoe); backdrop-filter: blur(8px);
+      margin-bottom:0.8rem; padding:0.8rem 1rem; border-radius:4px;
+      display:flex; justify-content:space-between; align-items:center;
     }
     ul li strong { color:var(--clr-accent); }
 
-    /* FOOTER */
+    /* FOOTER (Tahoe) */
     footer {
       text-align:center; padding:1.5rem 0; margin-top:3rem;
       font-size:0.9rem; color: #888;
+      background: var(--clr-tahoe); backdrop-filter: blur(12px);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width:600px) {
+      #home h1 { font-size:2.2rem; }
+      .skills-grid, .projects-grid { gap:1rem; }
     }
   </style>
 </head>
@@ -212,44 +241,45 @@
   <section id="home">
     <h1>Hey, I’m <span style="color:var(--clr-accent)">Riteshraj</span></h1>
     <div class="typed"></div>
-    <p>Final-year MCA student at SPPU, crafting automation scripts, visualizing data, and customizing terminals. Let’s solve problems together.</p>
+    <p>Final-year MCA student at Savitribai Phule Pune University (CGPA 9.04). Crafting automation scripts, visualizing data, and customizing terminals. Let’s innovate together.</p>
     <div class="contact">
       <a href="mailto:riteshraj.shetage@outlook.com"><i class="fa-solid fa-envelope"></i> Email</a>
       <a href="https://wa.me/918600029971" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
-      <a href="#"><i class="fa-brands fa-github"></i> GitHub</a>
-      <a href="#"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+      <a href="https://github.com/riteshrajs" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+      <a href="https://linkedin.com/in/riteshrajs" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
     </div>
   </section>
 
   <!-- ABOUT -->
   <section id="about">
     <h2>About Me</h2>
-    <p>I’m a detail-oriented developer with a 9.04 CGPA in MCA. Proficient in Java, Python, R, PHP, SQL, and front-end stacks. I thrive on automating workflows, building data-driven insights, and elevating user experiences.</p>
+    <p>I’m a methodical and detail-oriented developer with a passion for continuous learning. With a 9.04 CGPA in MCA, I’ve mastered Java, Python, R, PHP, and web technologies. I thrive on automating workflows—whether shell scripts or PowerShell modules—and exploring cloud architecture on AWS.</p>
+    <p>My background in statistics (B.Sc. CGPA 7.82) honed my analytical mindset. I’ve conducted hypothesis testing, built dashboards in RStudio and Excel, and energized terminals with cmatrix and lolcat. Outside code, music fuels my creativity and balance.</p>
   </section>
 
   <!-- SKILLS -->
   <section id="skills">
     <h2>Technical Skills</h2>
     <div class="skills-grid">
-      <div class="skill-chart">
-        <canvas id="chart-java"></canvas>
-        <span>Java</span>
+      <div>
+        <div class="skill-chart"><canvas id="chart-java"></canvas><span>Java</span></div>
+        <p class="skill-desc">Built multiple web apps with JSP/Servlet, Spring concepts, and OOP fundamentals.</p>
       </div>
-      <div class="skill-chart">
-        <canvas id="chart-python"></canvas>
-        <span>Python</span>
+      <div>
+        <div class="skill-chart"><canvas id="chart-python"></canvas><span>Python</span></div>
+        <p class="skill-desc">Automated data pipelines, scripting CLI tools, and exploring ML libraries.</p>
       </div>
-      <div class="skill-chart">
-        <canvas id="chart-r"></canvas>
-        <span>R</span>
+      <div>
+        <div class="skill-chart"><canvas id="chart-r"></canvas><span>R & Excel</span></div>
+        <p class="skill-desc">Conducted statistical analyses, visualized trends, and automated reports.</p>
       </div>
-      <div class="skill-chart">
-        <canvas id="chart-web"></canvas>
-        <span>HTML/CSS/JS</span>
+      <div>
+        <div class="skill-chart"><canvas id="chart-web"></canvas><span>HTML/CSS/JS</span></div>
+        <p class="skill-desc">Responsive design, dynamic UI with AngularJS/jQuery, and CSS animations.</p>
       </div>
-      <div class="skill-chart">
-        <canvas id="chart-db"></canvas>
-        <span>SQL & NoSQL</span>
+      <div>
+        <div class="skill-chart"><canvas id="chart-db"></canvas><span>SQL & NoSQL</span></div>
+        <p class="skill-desc">Designed schemas and queries in MySQL, PostgreSQL, and MongoDB.</p>
       </div>
     </div>
   </section>
@@ -262,46 +292,64 @@
         <img src="https://source.unsplash.com/collection/190727/400x300" alt="Reports App"/>
         <div class="info">
           <h3>Academic Reports Generator</h3>
-          <p>Java, JSP, Servlet, MySQL</p>
+          <p>Java · JSP · Servlet · MySQL</p>
         </div>
       </div>
       <div class="project-card" data-modal="m2">
         <img src="https://source.unsplash.com/collection/1127163/400x300" alt="Flashcards App"/>
         <div class="info">
           <h3>Flashcards Vocabulary App</h3>
-          <p>AngularJS, PHP, MySQL</p>
+          <p>AngularJS · PHP · MySQL</p>
         </div>
       </div>
       <div class="project-card" data-modal="m3">
         <img src="https://source.unsplash.com/collection/928423/400x300" alt="Stats Analysis"/>
         <div class="info">
           <h3>Statistical Usage Insights</h3>
-          <p>R, Excel, Google Forms</p>
+          <p>R · Excel · Google Forms</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- MODALS FOR PROJECT DETAIL -->
+  <!-- PROJECT MODALS -->
   <div class="modal" id="m1">
     <div class="modal-content">
       <button class="modal-close">&times;</button>
       <h3>Academic Reports Generator</h3>
-      <p>Automated PDF reports for student results & attendance. Tech: Java, JSP/Servlet, JDBC, MySQL on Tomcat.</p>
+      <p>This Java web application automates:</p>
+      <ul>
+        <li>PDF generation for student results & attendance via iText</li>
+        <li>Role-based dashboard for faculty and admin</li>
+        <li>Batch processing using Servlets & JDBC on Tomcat</li>
+        <li>Enhanced UX with dynamic JSP pages</li>
+      </ul>
     </div>
   </div>
   <div class="modal" id="m2">
     <div class="modal-content">
       <button class="modal-close">&times;</button>
       <h3>Flashcards Vocabulary App</h3>
-      <p>Interactive multimedia flashcards with quizzes and pronunciation guides. Built with AngularJS, PHP, MySQL.</p>
+      <p>Features include:</p>
+      <ul>
+        <li>Multimedia flashcards with image & audio support</li>
+        <li>Quiz mode with real-time feedback</li>
+        <li>Progress tracking stored in MySQL</li>
+        <li>SPA-style navigation with AngularJS</li>
+      </ul>
     </div>
   </div>
   <div class="modal" id="m3">
     <div class="modal-content">
       <button class="modal-close">&times;</button>
       <h3>Statistical Usage Insights</h3>
-      <p>Surveyed users via Google Forms; visualized trends & performed hypothesis testing using R and Excel.</p>
+      <p>Project highlights:</p>
+      <ul>
+        <li>Survey design & data collection via Google Forms</li>
+        <li>Descriptive & inferential analysis in R</li>
+        <li>Interactive dashboards in RStudio & Excel</li>
+        <li>Actionable insights on smartphone usage trends</li>
+      </ul>
     </div>
   </div>
 
@@ -309,10 +357,10 @@
   <section id="certs">
     <h2>Certifications</h2>
     <ul>
-      <li>Responsive Web Design (freeCodeCamp, Dec ’24)</li>
-      <li>TCS ion Career Edge – Young Professional (Sep ’23)</li>
-      <li>Computation of Statistics using R (Sep ’23)</li>
-      <li>Computing Intelligence Olympiad (Mar ’16)</li>
+      <li><strong>Responsive Web Design</strong>– freeCodeCamp (Dec ’24)</li>
+      <li><strong>TCS ion Career Edge</strong>– Young Professional (Sep ’23)</li>
+      <li><strong>Computation of Statistics using R</strong>– (Sep ’23)</li>
+      <li><strong>Computing Intelligence Olympiad</strong>– School Level (Mar ’16)</li>
     </ul>
   </section>
 
@@ -320,10 +368,10 @@
   <section id="edu">
     <h2>Education</h2>
     <ul>
-      <li><strong>MCA</strong> – Savitribai Phule Pune University (2024–26) | CGPA: 9.04</li>
-      <li><strong>B.Sc. Statistics</strong> – Rajarshi Chhatrapati Shahu College (2021–24) | CGPA: 7.82</li>
-      <li><strong>12th</strong> – Rajaram College (2020–21) | 77.17%</li>
-      <li><strong>10th</strong> – Shaskiya Vidyaniketan Pusegaon (2018–19) | 95.60%</li>
+      <li><strong>MCA</strong>– Savitribai Phule Pune University (2024–26) | CGPA: 9.04</li>
+      <li><strong>B.Sc. Statistics</strong>– Rajarshi Chhatrapati Shahu College (2021–24) | CGPA: 7.82</li>
+      <li><strong>12th</strong>– Rajaram College (2020–21) | 77.17%</li>
+      <li><strong>10th</strong>– Shaskiya Vidyaniketan Pusegaon (2018–19) | 95.60%</li>
     </ul>
   </section>
 
@@ -333,37 +381,111 @@
   </footer>
 
   <script>
-  // PARTICLES.JS CONFIG
-  particlesJS('particles-js', {
-    particles: {
-      number: { value: 80 },
-      size: { value: 3 },
-      color: { value: '#ffffff' },
-      line_linked: {
-        enable: true,
-        distance: 120,
-        color: '#ffffff',
-        opacity: 0.2
+    // PARTICLES.JS CONFIG
+    particlesJS('particles-js', {
+      particles: {
+        number: { value: 80 },
+        size: { value: 3 },
+        color: { value: '#ffffff' },
+        line_linked: {
+          enable: true,
+          distance: 120,
+          color: '#ffffff',
+          opacity: 0.2
+        },
+        move: {
+          enable: true,
+          speed: 2,
+          direction: 'none',
+          out_mode: 'out'
+        }
       },
-      move: {
-        enable: true,
-        speed: 2,
-        direction: 'none',
-        out_mode: 'out'
-      }
-    },
-    interactivity: {
-      detect_on: 'canvas',
-      events: {
-        onhover: { enable: true, mode: 'grab' },
-        onclick: { enable: true, mode: 'push' },
-        resize: true
+      interactivity: {
+        detect_on: 'canvas',
+        events: {
+          onhover: { enable: true, mode: 'grab' },
+          onclick: { enable: true, mode: 'push' },
+          resize: true
+        },
+        modes: {
+          grab: { distance: 140, line_linked: { opacity: 0.4 } },
+          push: { particles_nb: 4 }
+        }
       },
-      modes: {
-        grab: { distance: 140, line_linked: { opacity: 0.4 } },
-        push: { particles_nb: 4 }
-      }
-    },
-    retina_detect: true
-  });
-</script>
+      retina_detect: true
+    });
+
+    // TYPED.JS HERO TEXT
+    new Typed('.typed', {
+      strings: ['MCA Student', 'Java & Python Dev', 'Data Enthusiast', 'CLI Customizer'],
+      typeSpeed: 60, backSpeed: 30, backDelay: 1500, loop: true
+    });
+
+    // SCROLLREVEAL ANIMATIONS
+    ScrollReveal().reveal('#about p', { delay: 300, distance: '50px', origin: 'bottom' });
+    ScrollReveal().reveal('.skill-chart', { interval: 200, scale: 0.9 });
+    ScrollReveal().reveal('.skill-desc', { interval: 200, opacity: 0.7 });
+    ScrollReveal().reveal('.project-card', { interval: 200 });
+    ScrollReveal().reveal('#certs li', { interval: 150 });
+    ScrollReveal().reveal('#edu li', { interval: 150 });
+
+    // CHART.JS SKILL RADIAL CHARTS
+    const skills = [
+      { id: 'chart-java', pct: 90 },
+      { id: 'chart-python', pct: 85 },
+      { id: 'chart-r', pct: 80 },
+      { id: 'chart-web', pct: 75 },
+      { id: 'chart-db', pct: 70 }
+    ];
+    skills.forEach(s => {
+      new Chart(document.getElementById(s.id), {
+        type: 'doughnut',
+        data: {
+          labels: ['',''],
+          datasets: [{
+            data: [s.pct, 100 - s.pct],
+            backgroundColor: [getComputedStyle(document.documentElement).getPropertyValue('--clr-accent'), '#333'],
+            borderWidth: 0
+          }]
+        },
+        options: {
+          cutout: '75%',
+          plugins: { tooltip: { enabled: false }, legend: { display: false } }
+        }
+      });
+    });
+
+    // VANILLA-TILT ON PROJECT CARDS
+    document.querySelectorAll('.project-card').forEach(el => {
+      VanillaTilt.init(el, { max: 15, speed: 400, glare: true, 'max-glare': 0.2 });
+    });
+
+    // MODAL HANDLING
+    document.querySelectorAll('.project-card').forEach(card => {
+      card.addEventListener('click', () => {
+        document.getElementById(card.dataset.modal).classList.add('active');
+      });
+    });
+    document.querySelectorAll('.modal-close').forEach(btn => {
+      btn.addEventListener('click', () => btn.closest('.modal').classList.remove('active'));
+    });
+    document.querySelectorAll('.modal').forEach(m => {
+      m.addEventListener('click', e => { if (e.target === m) m.classList.remove('active'); });
+    });
+
+    // SCROLLSPY
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('nav ul li a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 120;
+        if (pageYOffset >= top) current = sec.getAttribute('id');
+      });
+      navLinks.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === `#${current}`);
+      });
+    });
+  </script>
+</body>
+</html>
