@@ -2,30 +2,55 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Riteshraj Shetage - Aspiring Software Developer Portfolio">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Riteshraj Shetage - Aspiring Software Developer Portfolio. MCA Student specializing in Python, Java, JavaScript, and full-stack web development.">
   <meta name="author" content="Riteshraj Shetage">
+  <meta name="keywords" content="Riteshraj Shetage, Software Developer, MCA Student, Python, Java, JavaScript, Web Development, Portfolio">
+  <meta name="theme-color" content="#00FFE0" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#0066FF" media="(prefers-color-scheme: light)">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://riteshraj-shetage.github.io/">
+  <meta property="og:title" content="Riteshraj Shetage | Portfolio">
+  <meta property="og:description" content="Aspiring Software Developer passionate about creating innovative solutions and meaningful digital experiences.">
+  <meta property="og:image" content="https://riteshraj-shetage.github.io/og-image.png">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://riteshraj-shetage.github.io/">
+  <meta property="twitter:title" content="Riteshraj Shetage | Portfolio">
+  <meta property="twitter:description" content="Aspiring Software Developer passionate about creating innovative solutions and meaningful digital experiences.">
+  <meta property="twitter:image" content="https://riteshraj-shetage.github.io/og-image.png">
+  
+  <!-- Performance & Resource Hints -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  
   <title>Riteshraj Shetage | Portfolio</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   
+  <!-- Skip Navigation Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  
   <!-- Navigation -->
-  <nav class="navbar">
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
     <div class="portfolio-container">
-      <div class="navbar-brand gradient-text">Riteshraj Shetage</div>
+      <div class="navbar-brand gradient-text" role="banner">Riteshraj Shetage</div>
       
       <!-- Desktop Navigation -->
-      <ul class="nav-menu">
-        <li><button class="nav-item active" data-section="home" onclick="scrollToSection('home')">Home</button></li>
-        <li><button class="nav-item" data-section="about" onclick="scrollToSection('about')">About</button></li>
-        <li><button class="nav-item" data-section="skills" onclick="scrollToSection('skills')">Skills</button></li>
-        <li><button class="nav-item" data-section="projects" onclick="scrollToSection('projects')">Projects</button></li>
-        <li><button class="nav-item" data-section="certifications" onclick="scrollToSection('certifications')">Certifications</button></li>
-        <li><button class="nav-item" data-section="contact" onclick="scrollToSection('contact')">Contact</button></li>
-        <li>
-          <button class="theme-toggle" id="theme-toggle">
-            <svg id="sun-icon" class="icon" viewBox="0 0 24 24">
+      <ul class="nav-menu" role="menubar">
+        <li role="none"><button class="nav-item active" data-section="home" onclick="scrollToSection('home')" role="menuitem" aria-current="page">Home</button></li>
+        <li role="none"><button class="nav-item" data-section="about" onclick="scrollToSection('about')" role="menuitem">About</button></li>
+        <li role="none"><button class="nav-item" data-section="skills" onclick="scrollToSection('skills')" role="menuitem">Skills</button></li>
+        <li role="none"><button class="nav-item" data-section="projects" onclick="scrollToSection('projects')" role="menuitem">Projects</button></li>
+        <li role="none"><button class="nav-item" data-section="certifications" onclick="scrollToSection('certifications')" role="menuitem">Certifications</button></li>
+        <li role="none"><button class="nav-item" data-section="contact" onclick="scrollToSection('contact')" role="menuitem">Contact</button></li>
+        <li role="none">
+          <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light theme" role="switch" aria-checked="false">
+            <svg id="sun-icon" class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
               <circle cx="12" cy="12" r="5"></circle>
               <line x1="12" y1="1" x2="12" y2="3"></line>
               <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -36,7 +61,7 @@
               <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
               <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
             </svg>
-            <svg id="moon-icon" class="icon" style="display: none;" viewBox="0 0 24 24">
+            <svg id="moon-icon" class="icon" style="display: none;" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
               <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
             </svg>
           </button>
@@ -45,8 +70,8 @@
       
       <!-- Mobile Menu Toggle -->
       <div class="mobile-menu-toggle">
-        <button class="theme-toggle" id="theme-toggle-mobile" style="display: none;">
-          <svg class="icon" viewBox="0 0 24 24">
+        <button class="theme-toggle" id="theme-toggle-mobile" style="display: none;" aria-label="Toggle dark/light theme" role="switch" aria-checked="false">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <circle cx="12" cy="12" r="5"></circle>
             <line x1="12" y1="1" x2="12" y2="3"></line>
             <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -58,13 +83,13 @@
             <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
           </svg>
         </button>
-        <button class="menu-icon" id="mobile-menu-toggle">
-          <svg id="menu-icon-open" class="icon" viewBox="0 0 24 24">
+        <button class="menu-icon" id="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-nav">
+          <svg id="menu-icon-open" class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <line x1="3" y1="12" x2="21" y2="12"></line>
             <line x1="3" y1="6" x2="21" y2="6"></line>
             <line x1="3" y1="18" x2="21" y2="18"></line>
           </svg>
-          <svg id="menu-icon-close" class="icon" style="display: none;" viewBox="0 0 24 24">
+          <svg id="menu-icon-close" class="icon" style="display: none;" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <line x1="18" y1="6" x2="6" y2="18"></line>
             <line x1="6" y1="6" x2="18" y2="18"></line>
           </svg>
@@ -73,27 +98,27 @@
     </div>
     
     <!-- Mobile Navigation -->
-    <div class="mobile-nav" id="mobile-nav">
-      <ul class="mobile-nav-list">
-        <li><button class="mobile-nav-item active" data-section="home" onclick="scrollToSection('home')">Home</button></li>
-        <li><button class="mobile-nav-item" data-section="about" onclick="scrollToSection('about')">About</button></li>
-        <li><button class="mobile-nav-item" data-section="skills" onclick="scrollToSection('skills')">Skills</button></li>
-        <li><button class="mobile-nav-item" data-section="projects" onclick="scrollToSection('projects')">Projects</button></li>
-        <li><button class="mobile-nav-item" data-section="certifications" onclick="scrollToSection('certifications')">Certifications</button></li>
-        <li><button class="mobile-nav-item" data-section="contact" onclick="scrollToSection('contact')">Contact</button></li>
+    <div class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+      <ul class="mobile-nav-list" role="menu">
+        <li role="none"><button class="mobile-nav-item active" data-section="home" onclick="scrollToSection('home')" role="menuitem" aria-current="page">Home</button></li>
+        <li role="none"><button class="mobile-nav-item" data-section="about" onclick="scrollToSection('about')" role="menuitem">About</button></li>
+        <li role="none"><button class="mobile-nav-item" data-section="skills" onclick="scrollToSection('skills')" role="menuitem">Skills</button></li>
+        <li role="none"><button class="mobile-nav-item" data-section="projects" onclick="scrollToSection('projects')" role="menuitem">Projects</button></li>
+        <li role="none"><button class="mobile-nav-item" data-section="certifications" onclick="scrollToSection('certifications')" role="menuitem">Certifications</button></li>
+        <li role="none"><button class="mobile-nav-item" data-section="contact" onclick="scrollToSection('contact')" role="menuitem">Contact</button></li>
       </ul>
     </div>
   </nav>
 
   <!-- Main Content -->
-  <main>
+  <main id="main-content" role="main">
     
     <!-- Hero Section -->
-    <section id="home" class="hero">
-      <div class="hero-bg-gradient-1"></div>
-      <div class="hero-bg-gradient-2"></div>
-      <div class="hero-bg-blob-1"></div>
-      <div class="hero-bg-blob-2"></div>
+    <section id="home" class="hero" aria-label="Introduction">
+      <div class="hero-bg-gradient-1" aria-hidden="true"></div>
+      <div class="hero-bg-gradient-2" aria-hidden="true"></div>
+      <div class="hero-bg-blob-1" aria-hidden="true"></div>
+      <div class="hero-bg-blob-2" aria-hidden="true"></div>
       
       <div class="portfolio-container hero-content">
         <div class="space-y-8">
@@ -141,20 +166,20 @@
 
           <!-- Social Links -->
           <div class="hero-socials">
-            <a href="https://github.com/riteshraj-shetage" target="_blank" rel="noopener noreferrer" class="social-link">
-              <svg class="icon" viewBox="0 0 24 24">
+            <a href="https://github.com/riteshraj-shetage" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Visit my GitHub profile">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                 <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
               </svg>
             </a>
-            <a href="https://www.linkedin.com/in/riteshraj-shetage" target="_blank" rel="noopener noreferrer" class="social-link">
-              <svg class="icon" viewBox="0 0 24 24">
+            <a href="https://www.linkedin.com/in/riteshraj-shetage" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Connect with me on LinkedIn">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                 <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
                 <rect x="2" y="9" width="4" height="12"></rect>
                 <circle cx="4" cy="4" r="2"></circle>
               </svg>
             </a>
-            <a href="mailto:riteshraj.shetage@outlook.com" class="social-link">
-              <svg class="icon" viewBox="0 0 24 24">
+            <a href="mailto:riteshraj.shetage@outlook.com" class="social-link" aria-label="Send me an email">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                 <polyline points="22,6 12,13 2,6"></polyline>
               </svg>
@@ -165,12 +190,12 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="relative">
-      <div class="bg-gradient-glow"></div>
+    <section id="about" class="relative" aria-labelledby="about-heading">
+      <div class="bg-gradient-glow" aria-hidden="true"></div>
       
       <div class="portfolio-container relative z-10">
         <div class="text-center mb-16 animate-on-scroll">
-          <h2 class="section-heading">About Me</h2>
+          <h2 id="about-heading" class="section-heading">About Me</h2>
           <p style="font-size: 1.25rem; color: var(--muted-foreground); max-width: 48rem; margin: 0 auto; line-height: 1.75;">
             Passionate about transforming innovative ideas into impactful digital solutions
           </p>
@@ -256,12 +281,12 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="relative">
-      <div class="bg-gradient-glow"></div>
+    <section id="skills" class="relative" aria-labelledby="skills-heading">
+      <div class="bg-gradient-glow" aria-hidden="true"></div>
       
       <div class="portfolio-container relative z-10">
         <div class="text-center mb-16 animate-on-scroll">
-          <h2 class="section-heading">Skills & Technologies</h2>
+          <h2 id="skills-heading" class="section-heading">Skills & Technologies</h2>
           <p style="font-size: 1.25rem; color: var(--muted-foreground); max-width: 48rem; margin: 0 auto; line-height: 1.75;">
             A comprehensive toolkit for building modern applications and solving complex problems
           </p>
@@ -396,12 +421,12 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="relative">
-      <div class="bg-gradient-glow" style="opacity: 0.1;"></div>
+    <section id="projects" class="relative" aria-labelledby="projects-heading">
+      <div class="bg-gradient-glow" style="opacity: 0.1;" aria-hidden="true"></div>
       
       <div class="portfolio-container relative z-10">
         <div class="text-center mb-16 animate-on-scroll">
-          <h2 class="section-heading">Featured Projects</h2>
+          <h2 id="projects-heading" class="section-heading">Featured Projects</h2>
           <p style="font-size: 1.25rem; color: var(--muted-foreground); max-width: 48rem; margin: 0 auto;">
             A showcase of innovative solutions and technical implementations across various domains
           </p>
@@ -589,12 +614,12 @@
     </section>
 
     <!-- Certifications Section -->
-    <section id="certifications" class="relative">
-      <div class="bg-gradient-glow" style="opacity: 0.3;"></div>
+    <section id="certifications" class="relative" aria-labelledby="certifications-heading">
+      <div class="bg-gradient-glow" style="opacity: 0.3;" aria-hidden="true"></div>
       
       <div class="portfolio-container relative z-10">
         <div class="text-center mb-16 animate-on-scroll">
-          <h2 class="section-heading">Certifications & Achievements</h2>
+          <h2 id="certifications-heading" class="section-heading">Certifications & Achievements</h2>
           <p style="font-size: 1.25rem; color: var(--muted-foreground); max-width: 48rem; margin: 0 auto;">
             Continuous learning and professional development through industry-recognized certifications
           </p>
@@ -753,12 +778,12 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="relative">
-      <div class="bg-gradient-glow"></div>
+    <section id="contact" class="relative" aria-labelledby="contact-heading">
+      <div class="bg-gradient-glow" aria-hidden="true"></div>
       
       <div class="portfolio-container relative z-10">
         <div class="text-center mb-16 animate-on-scroll">
-          <h2 class="section-heading">Get In Touch</h2>
+          <h2 id="contact-heading" class="section-heading">Get In Touch</h2>
           <p style="font-size: 1.25rem; color: var(--muted-foreground); max-width: 48rem; margin: 0 auto;">
             I'm always excited to connect with fellow developers, discuss new opportunities, or collaborate on interesting projects!
           </p>
@@ -891,30 +916,30 @@
                 <h3 style="font-size: 1.5rem; font-weight: 700;">Send a Message</h3>
               </div>
 
-              <form id="contact-form" class="space-y-6">
+              <form id="contact-form" class="space-y-6" novalidate>
                 <div class="grid grid-md-2" style="gap: 1rem;">
                   <div class="form-group">
-                    <label class="form-label" for="name">Your Name</label>
-                    <input type="text" id="name" class="input" placeholder="Enter your full name" required>
+                    <label class="form-label" for="name">Your Name <span aria-label="required">*</span></label>
+                    <input type="text" id="name" name="name" class="input" placeholder="Enter your full name" required aria-required="true" autocomplete="name">
                   </div>
                   <div class="form-group">
-                    <label class="form-label" for="email">Email Address</label>
-                    <input type="email" id="email" class="input" placeholder="your.email@example.com" required>
+                    <label class="form-label" for="email">Email Address <span aria-label="required">*</span></label>
+                    <input type="email" id="email" name="email" class="input" placeholder="your.email@example.com" required aria-required="true" autocomplete="email">
                   </div>
                 </div>
 
                 <div class="form-group">
-                  <label class="form-label" for="subject">Subject</label>
-                  <input type="text" id="subject" class="input" placeholder="What's this about?" required>
+                  <label class="form-label" for="subject">Subject <span aria-label="required">*</span></label>
+                  <input type="text" id="subject" name="subject" class="input" placeholder="What's this about?" required aria-required="true">
                 </div>
 
                 <div class="form-group">
-                  <label class="form-label" for="message">Message</label>
-                  <textarea id="message" rows="6" class="textarea" placeholder="Tell me about your project, ideas, or just say hello..." required></textarea>
+                  <label class="form-label" for="message">Message <span aria-label="required">*</span></label>
+                  <textarea id="message" name="message" rows="6" class="textarea" placeholder="Tell me about your project, ideas, or just say hello..." required aria-required="true"></textarea>
                 </div>
 
-                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.75rem; font-size: 1.125rem; font-weight: 600;">
-                  <svg class="icon" viewBox="0 0 24 24" style="margin-right: 0.5rem;">
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.75rem; font-size: 1.125rem; font-weight: 600;" aria-label="Send message">
+                  <svg class="icon" viewBox="0 0 24 24" style="margin-right: 0.5rem;" aria-hidden="true" focusable="false">
                     <line x1="22" y1="2" x2="11" y2="13"></line>
                     <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
                   </svg>
@@ -934,14 +959,14 @@
   </main>
 
   <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-bg"></div>
+  <footer class="footer" role="contentinfo">
+    <div class="footer-bg" aria-hidden="true"></div>
     
     <div class="portfolio-container footer-content">
       <!-- Back to Top Button -->
       <div style="margin-bottom: 1.5rem;">
-        <button class="btn btn-outline" onclick="scrollToTop()" style="border-radius: 9999px; padding: 0.75rem; width: 2.5rem; height: 2.5rem;">
-          <svg class="icon" viewBox="0 0 24 24">
+        <button class="btn btn-outline" onclick="scrollToTop()" style="border-radius: 9999px; padding: 0.75rem; width: 2.5rem; height: 2.5rem;" aria-label="Back to top">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <line x1="12" y1="19" x2="12" y2="5"></line>
             <polyline points="5 12 12 5 19 12"></polyline>
           </svg>
@@ -957,13 +982,13 @@
       </div>
 
       <!-- Links -->
-      <div class="footer-links">
+      <nav class="footer-links" aria-label="Footer navigation">
         <a href="#about" class="footer-link">About</a>
         <a href="#skills" class="footer-link">Skills</a>
         <a href="#projects" class="footer-link">Projects</a>
         <a href="#certifications" class="footer-link">Certifications</a>
         <a href="#contact" class="footer-link">Contact</a>
-      </div>
+      </nav>
 
       <!-- Divider -->
       <div class="footer-divider"></div>
