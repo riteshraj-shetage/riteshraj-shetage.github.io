@@ -1,0 +1,21 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#0d1117"/>
+  <rect x="50" y="50" width="700" height="500" fill="none" stroke="#2f81f7" stroke-width="4"/>
+  <rect x="70" y="70" width="660" height="460" fill="none" stroke="#30363d" stroke-width="2"/>
+  
+  <!-- Certificate Title -->
+  <text x="400" y="150" font-family="Arial, sans-serif" font-size="48" fill="#2f81f7" text-anchor="middle" font-weight="bold">Certificate</text>
+  <text x="400" y="200" font-family="Arial, sans-serif" font-size="24" fill="#e6edf3" text-anchor="middle">of Achievement</text>
+  
+  <!-- Badge Icon -->
+  <circle cx="400" cy="300" r="50" fill="#1f6feb"/>
+  <path d="M 400 270 L 410 290 L 432 293 L 415 310 L 419 332 L 400 320 L 381 332 L 385 310 L 368 293 L 390 290 Z" fill="#ffffff"/>
+  
+  <!-- Placeholder Text -->
+  <text x="400" y="400" font-family="Arial, sans-serif" font-size="20" fill="#7d8590" text-anchor="middle">This is a placeholder certificate image</text>
+  <text x="400" y="430" font-family="Arial, sans-serif" font-size="16" fill="#6e7681" text-anchor="middle">Replace with actual certificate PNG/JPG</text>
+  
+  <!-- Bottom decoration -->
+  <line x1="250" y1="480" x2="550" y2="480" stroke="#30363d" stroke-width="2"/>
+  <text x="400" y="510" font-family="Arial, sans-serif" font-size="14" fill="#6e7681" text-anchor="middle">Issued by Organization Name</text>
+</svg>
