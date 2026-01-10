@@ -1,8 +1,8 @@
 <svg width="800" height="450" viewBox="0 0 800 450" fill="none" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="450" fill="#0d1117"/>
   <rect x="50" y="50" width="700" height="350" rx="8" fill="#161b22" stroke="#30363d" stroke-width="2"/>
-  <circle cx="400" cy="225" r="80" fill="#9e6a03" opacity="0.2"/>
-  <circle cx="400" cy="225" r="60" fill="#d29922" opacity="0.6"/>
-  <circle cx="400" cy="225" r="40" fill="#f0ad4e" opacity="0.8"/>
-  <text x="400" y="320" font-family="system-ui" font-size="24" fill="#7d8590" text-anchor="middle">Task Management</text>
+  <polygon points="400,125 500,225 400,325 300,225" fill="#6e7681" opacity="0.2"/>
+  <polygon points="400,155 470,225 400,295 330,225" fill="#8b949e" opacity="0.4"/>
+  <polygon points="400,185 440,225 400,265 360,225" fill="#b1bac4" opacity="0.6"/>
+  <circle cx="400" cy="225" r="25" fill="#c9d1d9" opacity="0.9"/>
 </svg>
