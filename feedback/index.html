@@ -101,12 +101,12 @@ Astro
             result.classList.add("text-gh-danger-fg");
             result.innerHTML = "Something went wrong!";
           } finally {
-            form.reset();
             const clearBtn = document.getElementById("resetBtn");
             clearBtn.classList.add("hidden");
             setTimeout(() => {
               result.style.display = "none";
             }, 5000);
+            form.reset();
           }
         });
       },
