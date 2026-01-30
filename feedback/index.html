@@ -58,6 +58,7 @@ Astro
           clearBtn.classList.add("hidden");
           result.innerHTML = "";
           result.className = "mt-4 text-center";
+          result.style.display = "";
         });
 
         form.addEventListener("submit", async function (e) {
@@ -70,6 +71,7 @@ Astro
           const formData = new FormData(form);
           const json = JSON.stringify(Object.fromEntries(formData));
 
+          result.style.display = "";
           result.innerHTML = "Sending...";
           result.className = "mt-4 text-center text-slate-400";
 
@@ -100,7 +102,7 @@ Astro
             result.innerHTML = "Something went wrong!";
           } finally {
             form.reset();
-            const clearBtn = document.getElementById("clearBtn");
+            const clearBtn = document.getElementById("resetBtn");
             clearBtn.classList.add("hidden");
             setTimeout(() => {
               result.style.display = "none";
