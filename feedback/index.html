@@ -88,6 +88,11 @@ Astro
               result.classList.remove("text-slate-400");
               result.classList.add("text-gh-success-fg");
               result.innerHTML = "Thank you for your feedback!";
+
+              // Redirect to home page after showing success message
+              setTimeout(() => {
+                window.location.href = "/";
+              }, 2000);
             } else {
               result.classList.remove("text-slate-400");
               result.classList.add("text-gh-danger-fg");
@@ -101,9 +106,12 @@ Astro
             form.reset();
             const clearBtn = document.getElementById("resetBtn");
             clearBtn.classList.add("hidden");
-            setTimeout(() => {
-              result.style.display = "none";
-            }, 5000);
+            // Remove the setTimeout that hides the result message on error
+            if (result.classList.contains("text-gh-danger-fg")) {
+              setTimeout(() => {
+                result.style.display = "none";
+              }, 5000);
+            }
           }
         });
       },
